@@ -20,6 +20,7 @@ public class Game extends Pane {
         Globals.getInstance().display = new Display(this);
         Globals.getInstance().setupResources();
         //initial commit
+        //commit check
         init();
     }
 
