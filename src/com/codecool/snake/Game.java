@@ -21,6 +21,7 @@ public class Game extends Pane {
         Globals.getInstance().setupResources();
         //initial commit
         //commit check
+        //commit check3
         init();
     }
 
