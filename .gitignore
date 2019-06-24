@@ -18,6 +18,8 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/vcs.xml
+.idea/**/misc.xml
+java-se-snake.iml
 
 # Gradle:
 .idea/**/gradle.xml
