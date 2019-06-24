@@ -31,6 +31,8 @@ public class GameTimer {
 
     public void play() {
         timer.play();
+        //gafa
+        //hgffa
         System.out.println("GameTimer playing.");
     }
 }
