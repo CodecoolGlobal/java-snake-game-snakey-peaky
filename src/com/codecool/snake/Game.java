@@ -19,7 +19,7 @@ public class Game extends Pane {
         Globals.getInstance().game = this;
         Globals.getInstance().display = new Display(this);
         Globals.getInstance().setupResources();
-
+        //initial commit
         init();
     }
 
