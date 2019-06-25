@@ -12,6 +12,7 @@ public class SnakeBody extends GameEntity {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
 
+
     public SnakeBody(Vec2d coord) {
         setImage(Globals.getInstance().getImage("SnakeBody"));
         setX(coord.x);

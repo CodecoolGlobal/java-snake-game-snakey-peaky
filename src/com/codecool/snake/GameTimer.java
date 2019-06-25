@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.util.Duration;
 
 
@@ -25,14 +26,15 @@ public class GameTimer {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(frameTime),
                 ae -> loopMethod.run());
-
         timer.getKeyFrames().add( kf );
+    }
+
+    public Duration getTimer() {
+        return timer.getKeyFrames().get(0).getTime();
     }
 
     public void play() {
         timer.play();
-        //gafa
-        //hgffa
         System.out.println("GameTimer playing.");
     }
 }

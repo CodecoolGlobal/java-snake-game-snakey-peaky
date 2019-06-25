@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
+import com.codecool.snake.GameLoop;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -8,6 +9,8 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.input.KeyCode;
+
+import java.util.List;
 
 
 public class Snake implements Animatable {
@@ -21,24 +24,44 @@ public class Snake implements Animatable {
     public Snake(Vec2d position) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
-
         addPart(4);
     }
 
     public void step() {
-        SnakeControl turnDir = getUserInput();
-        head.updateRotation(turnDir, speed);
 
+    }
+
+    public void stepSnake1() {
+        SnakeControl turnDir = getUserInputSnake1();
+        head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
-
         body.doPendingModifications();
     }
 
-    private SnakeControl getUserInput() {
+    public void stepSnake2() {
+        SnakeControl turnDir = getUserInputSnake2();
+        head.updateRotation(turnDir, speed);
+        updateSnakeBodyHistory();
+        checkForGameOverConditions();
+        body.doPendingModifications();
+    }
+
+    private SnakeControl getUserInputSnake1() {
         SnakeControl turnDir = SnakeControl.INVALID;
+
         if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
         if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+
+        return turnDir;
+    }
+
+    private SnakeControl getUserInputSnake2() {
+        SnakeControl turnDir = SnakeControl.INVALID;
+
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+
         return turnDir;
     }
 
