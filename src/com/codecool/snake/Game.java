@@ -70,6 +70,10 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
+    public static void spawnGameOver(int numberOfGameOver) {
+        for(int i = 0; i < numberOfGameOver; ++i) new gover();
+    }
+
     private void spawnSpeedPowerUps(int numberOfSpeedPowerUps) {
         for(int i = 0; i < numberOfSpeedPowerUps; i++) new SpeedPowerUp();
     }

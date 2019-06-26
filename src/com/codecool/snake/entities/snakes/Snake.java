@@ -1,7 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
-import com.codecool.snake.GameLoop;
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -9,8 +9,6 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.input.KeyCode;
-
-import java.util.List;
 
 
 public class Snake extends GameEntity implements Animatable {
@@ -100,6 +98,7 @@ public class Snake extends GameEntity implements Animatable {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Game.spawnGameOver(1);
         }
     }
 

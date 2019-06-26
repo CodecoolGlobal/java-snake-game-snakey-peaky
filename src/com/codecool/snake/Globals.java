@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
 import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 // class for holding all static stuff
 public class Globals {
@@ -12,7 +13,6 @@ public class Globals {
 
     public Display display;
     public Game game;
-
     private GameLoop gameLoop;
     private Resources resources;
 
@@ -35,6 +35,7 @@ public class Globals {
         resources.addImage("SpeedUpPaprika", new Image("paprika-12-570342.png"));
         resources.addImage("ShootingPowerUp", new Image("dragon-png-4.png"));
         resources.addImage("Shooting", new Image("27661-1-fireball-transparent-background-thumb.png"));
+        resources.addImage("gameOverScene", new Image("GO.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
