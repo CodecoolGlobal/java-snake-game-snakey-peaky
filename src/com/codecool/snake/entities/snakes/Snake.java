@@ -2,6 +2,7 @@ package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
 import com.codecool.snake.Game;
+import com.codecool.snake.GameLoop;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -21,18 +22,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Optional;
 
+import java.util.List;
+
 
 public class Snake extends GameEntity implements Animatable {
-    private static float speed = 2;
+    private float speed = 2;
     private int health = 100;
     private KeyCode turnLeftKey, turnRightKey, shootingKey;
+    private String name;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
 
+
     public void speedUp() {
         speed++;
     }
+
 
     public void shooting(SnakeControl shooting) {
         if (shooting.equals(SnakeControl.SHOOTING)) {
@@ -42,29 +48,48 @@ public class Snake extends GameEntity implements Animatable {
         }
     }
 
-
-    public Snake(Vec2d position) {
+    public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
-
+        this.name = name;
         addPart(4);
     }
 
     public void step() {
-        SnakeControl turnDir = getUserInput();
-        head.updateRotation(turnDir, speed);
 
+    }
+
+    public void stepSnake1() {
+        SnakeControl turnDir = getUserInputSnake1();
+        head.updateRotation(turnDir, speed);
         updateSnakeBodyHistory();
         checkForGameOverConditions();
-
         body.doPendingModifications();
     }
 
-    public SnakeControl getUserInput() {
+    public void stepSnake2() {
+        SnakeControl turnDir = getUserInputSnake2();
+        head.updateRotation(turnDir, speed);
+        updateSnakeBodyHistory();
+        checkForGameOverConditions();
+        body.doPendingModifications();
+    }
+
+    private SnakeControl getUserInputSnake1() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.G)) turnDir = SnakeControl.SHOOTING;
+
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+
+        return turnDir;
+    }
+
+    private SnakeControl getUserInputSnake2() {
+        SnakeControl turnDir = SnakeControl.INVALID;
+
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+        if(InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+
         return turnDir;
     }
 
@@ -81,14 +106,6 @@ public class Snake extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
-    }
-
-    public SnakeHead getHead() {
-        return head;
-    }
-
-    public static float getSpeed() {
-        return speed;
     }
 
     private void checkForGameOverConditions() {
@@ -116,4 +133,23 @@ public class Snake extends GameEntity implements Animatable {
         return head;
     }
 
+    public DelayedModificationList<GameEntity> getBody() {
+        return body;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public SnakeHead getHead() {
+        return head;
+    }
 }

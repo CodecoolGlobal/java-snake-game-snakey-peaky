@@ -16,14 +16,14 @@ public class Shooting extends GameEntity implements Interactable, Animatable {
     private static final int RELATIVE_SPEED = 6;
 
 
-    Shooting(Snake snake) {
-        setImage(Globals.getInstance().getImage("Shooting"));
-        setRotate(snake.getHead().getRotate());
-        Vec2d startPos = snake.getHead().getPosition();
-        heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + RELATIVE_SPEED);
-        setX(startPos.x+10);
-        setY(startPos.y);
-    }
+//    Shooting(Snake snake) {
+//        setImage(Globals.getInstance().getImage("Shooting"));
+//        setRotate(snake.getHead().getRotate());
+//        Vec2d startPos = snake.getHead().getPosition();
+//        heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + RELATIVE_SPEED);
+//        setX(startPos.x+10);
+//        setY(startPos.y);
+//    }
 
     private void outOfBoundsHandler(){
         if(isOutOfBounds()) destroy();
