@@ -5,11 +5,9 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.gameover.gameOver;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
-import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 
