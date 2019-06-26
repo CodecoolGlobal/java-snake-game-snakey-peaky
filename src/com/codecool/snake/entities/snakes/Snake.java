@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake extends GameEntity implements Animatable {
-    private static float speed = 2;
+    private float speed = 2;
     private int health = 100;
     private KeyCode turnLeftKey, turnRightKey, shootingKey;
 
@@ -75,7 +75,7 @@ public class Snake extends GameEntity implements Animatable {
         return head;
     }
 
-    public static float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
