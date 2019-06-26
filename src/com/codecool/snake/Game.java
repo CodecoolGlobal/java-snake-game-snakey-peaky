@@ -6,6 +6,7 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.ShootingPowerUp;
 import com.codecool.snake.entities.powerups.SpeedPowerUp;
 
+import com.codecool.snake.entities.powerups.gover;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -74,7 +75,7 @@ public class Game extends Pane {
     }
 
     public static void spawnGameOver(int numberOfGameOver) {
-        for(int i = 0; i < numberOfGameOver; ++i) new gameOver();
+        for(int i = 0; i < numberOfGameOver; ++i) new gover();
     }
 
     private void spawnSpeedPowerUps(int numberOfSpeedPowerUps) {
