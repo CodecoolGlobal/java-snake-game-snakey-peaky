@@ -1,12 +1,13 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.ShootingPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
-
+import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
@@ -47,6 +48,15 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof SimplePowerUp){
             System.out.println(getMessage());
             snake.addPart(4);
+        }
+        if(entity instanceof SpeedPowerUp){
+            System.out.println(getMessage());
+            snake.speedUp();
+        }
+        SnakeControl shooting = snake.getUserInput();
+        if(entity instanceof ShootingPowerUp){
+            System.out.println(getMessage());
+            snake.shooting(shooting);
         }
     }
 

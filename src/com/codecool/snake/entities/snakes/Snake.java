@@ -10,12 +10,25 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.scene.input.KeyCode;
 
 
-public class Snake implements Animatable {
-    private static final float speed = 2;
+public class Snake extends GameEntity implements Animatable {
+    private static float speed = 2;
     private int health = 100;
+    private KeyCode turnLeftKey, turnRightKey, shootingKey;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
+
+    public void speedUp() {
+        speed++;
+    }
+
+    public void shooting(SnakeControl shooting) {
+        if (shooting.equals(SnakeControl.SHOOTING)) {
+            setImage(Globals.getInstance().getImage("Shooting"));
+
+            setPosition(getPosition());
+        }
+    }
 
 
     public Snake(Vec2d position) {
@@ -35,10 +48,11 @@ public class Snake implements Animatable {
         body.doPendingModifications();
     }
 
-    private SnakeControl getUserInput() {
+    public SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.G)) turnDir = SnakeControl.SHOOTING;
         return turnDir;
     }
 
@@ -57,6 +71,14 @@ public class Snake implements Animatable {
         health += diff;
     }
 
+    public SnakeHead getHead() {
+        return head;
+    }
+
+    public static float getSpeed() {
+        return speed;
+    }
+
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
@@ -66,7 +88,7 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -75,7 +97,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 }
