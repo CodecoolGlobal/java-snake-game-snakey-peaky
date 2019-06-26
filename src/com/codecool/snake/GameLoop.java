@@ -17,7 +17,7 @@ public class GameLoop {
 
     public GameLoop(Snake snake/*, Snake snake2*/) {
         this.snake = snake;
-        //this.snake2 = snake2;
+        this.snake2 = snake2;
     }
 
     public void start() {
@@ -31,7 +31,7 @@ public class GameLoop {
     public void step() {
         if(running) {
             snake.stepSnake1();
-            //snake2.stepSnake2();
+//            snake2.stepSnake2();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();

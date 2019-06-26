@@ -72,6 +72,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         /*if(entity instanceof SnakeBody) {
             if (!snake.getBody().getList().contains(entity)) {
                 Globals.getInstance().stopGame();
+                Game.spawnGameOver(1);
             }
         }*/
     }

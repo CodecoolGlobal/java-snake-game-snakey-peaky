@@ -29,7 +29,6 @@ public class Snake extends GameEntity implements Animatable {
     public void shooting(SnakeControl shooting) {
         if (shooting.equals(SnakeControl.SHOOTING)) {
             setImage(Globals.getInstance().getImage("Shooting"));
-
             setPosition(getPosition());
         }
     }
