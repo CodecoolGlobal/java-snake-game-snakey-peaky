@@ -62,11 +62,11 @@ public class Game extends Pane {
         //snake2 = new Snake(new Vec2d(200, 500), "Vitya");
     }
 
-    private void spawnEnemies(int numberOfEnemies) {
+    public static void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
     }
 
-    private void spawnPowerUps(int numberOfPowerUps) {
+    public static void spawnPowerUps(int numberOfPowerUps) {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
@@ -74,7 +74,7 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfGameOver; ++i) new gover();
     }
 
-    private void spawnSpeedPowerUps(int numberOfSpeedPowerUps) {
+    public static void spawnSpeedPowerUps(int numberOfSpeedPowerUps) {
         for(int i = 0; i < numberOfSpeedPowerUps; i++) new SpeedPowerUp();
     }
     public void shootingPowerUps(int numberOfShootingPowerUps) {
