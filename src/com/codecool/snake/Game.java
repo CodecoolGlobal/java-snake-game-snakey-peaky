@@ -3,30 +3,17 @@ package com.codecool.snake;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.gameover.gameOver;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.ShootingPowerUp;
+import com.codecool.snake.entities.powerups.SpeedPowerUp;
+
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.application.Application;
-import javafx.stage.Stage;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Pane;
 
 import java.util.Optional;
 
@@ -48,6 +35,8 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(4);
+        spawnSpeedPowerUps(3);
+        shootingPowerUps(3);
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -88,10 +77,16 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfGameOver; ++i) new gameOver();
     }
 
+    private void spawnSpeedPowerUps(int numberOfSpeedPowerUps) {
+        for(int i = 0; i < numberOfSpeedPowerUps; i++) new SpeedPowerUp();
+    }
+    public void shootingPowerUps(int numberOfShootingPowerUps) {
+        for(int i = 0; i < numberOfShootingPowerUps; i++) new ShootingPowerUp();
+    }
+
     private void setupInputHandling() {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
-
     }
 }
