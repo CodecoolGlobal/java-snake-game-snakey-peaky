@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.DelayedModificationList;
+import com.codecool.snake.Game;
+import com.codecool.snake.GameLoop;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
@@ -44,11 +45,28 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof Enemy){
             System.out.println(getMessage());
             snake.changeHealth(((Enemy) entity).getDamage());
+            System.out.println(snake.getHealth());
         }
+
         if(entity instanceof SimplePowerUp){
             System.out.println(getMessage());
             snake.addPart(4);
         }
+
+        if (entity instanceof SnakeHead) {
+            Globals.getInstance().stopGame();
+            System.out.println("Game over");
+        }
+
+        if(entity instanceof SnakeBody) {
+            if (!snake.getBody().getList().contains(entity)) {
+                Globals.getInstance().stopGame();
+            }
+        }
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 
     @Override

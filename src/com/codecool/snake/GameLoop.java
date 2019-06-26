@@ -14,8 +14,6 @@ public class GameLoop {
     private Snake snake;
     private Snake snake2;
     private boolean running = false;
-    private GameTimer timer = new GameTimer();
-    private int elapsedTime = 0;
 
     public GameLoop(Snake snake, Snake snake2) {
         this.snake = snake;
@@ -24,8 +22,6 @@ public class GameLoop {
 
     public void start() {
         running = true;
-        timer.setup(this::step);
-        timer.play();
     }
 
     public void stop() {
@@ -42,10 +38,6 @@ public class GameLoop {
                 }
             }
             checkCollisions();
-            elapsedTime += 17;
-            if (elapsedTime > 500) {
-                checkBodyCollisions();
-            }
             //checkBodyCollisions();
         }
         Globals.getInstance().display.frameFinished();
@@ -69,23 +61,4 @@ public class GameLoop {
             }
         }
     }
-
-    private void checkBodyCollisions() {
-        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
-            for (int idxToCheck = 0; idxToCheck < gameObjs.size(); ++idxToCheck) {
-                GameEntity objToCheck = gameObjs.get(idxToCheck);
-                if (objToCheck instanceof SnakeHead) {
-                    for (int otherObjIdx = idxToCheck + 3; otherObjIdx < gameObjs.size(); ++otherObjIdx) {
-                        GameEntity otherObj = gameObjs.get(otherObjIdx);
-                            if (otherObj instanceof SnakeBody) {
-                                if (objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())) {
-                                    System.out.println("Game Over");
-                                    Globals.getInstance().stopGame();
-                                }
-                        }
-                    }
-            }
-        }
-    }
-
 }

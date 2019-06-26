@@ -16,16 +16,19 @@ import java.util.List;
 public class Snake implements Animatable {
     private static final float speed = 2;
     private int health = 100;
+    private String name;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
 
 
-    public Snake(Vec2d position) {
+    public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
+        this.name = name;
         addPart(4);
     }
+
 
     public void step() {
 
@@ -77,7 +80,7 @@ public class Snake implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health += diff;
+        health -= diff;
     }
 
     private void checkForGameOverConditions() {
@@ -100,5 +103,17 @@ public class Snake implements Animatable {
 
         if(result != null) return result;
         return head;
+    }
+
+    public DelayedModificationList<GameEntity> getBody() {
+        return body;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public String getName() {
+        return name;
     }
 }
