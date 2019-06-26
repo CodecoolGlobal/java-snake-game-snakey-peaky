@@ -19,13 +19,11 @@ public class Snake extends GameEntity implements Animatable {
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
-    private Object GameEntity;
 
 
     public void speedUp() {
         speed++;
     }
-
 
     public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
@@ -50,10 +48,8 @@ public class Snake extends GameEntity implements Animatable {
     public void stepSnake2() {
         SnakeControl turnDir = getUserInputSnake2();
         head.updateRotation(turnDir, speed);
-
         updateSnakeBodyHistory();
         checkForGameOverConditions();
-
         body.doPendingModifications();
     }
 

@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 public class Globals {
     private static Globals instance = null;
 
-    public static final double WINDOW_WIDTH = 1000;
-    public static final double WINDOW_HEIGHT = 700;
+    public static final double WINDOW_WIDTH = 1920;
+    public static final double WINDOW_HEIGHT = 1080;
 
     public Display display;
     public Game game;
@@ -35,6 +35,7 @@ public class Globals {
         resources.addImage("ShootingPowerUp", new Image("dragon-png-4.png"));
         resources.addImage("Shooting", new Image("27661-1-fireball-transparent-background-thumb.png"));
         resources.addImage("gameOverScene", new Image("GO.png"));
+        resources.addImage("BG", new Image("background.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
