@@ -46,6 +46,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         if(entity instanceof SnakeHead || entity instanceof Shooting){
             System.out.println(getMessage());
             destroy();
+
         }
     }
 

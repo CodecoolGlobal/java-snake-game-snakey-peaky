@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -13,25 +14,18 @@ public class Snake extends GameEntity implements Animatable {
     private float speed = 2;
     private int health = 100;
     private KeyCode turnLeftKey, turnRightKey, shootingKey;
-    private double shootingTimeWindow;
+    private int shootingInterval;
     private String name;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
+    private Object GameEntity;
 
 
     public void speedUp() {
         speed++;
     }
 
-
-    public void shooting(SnakeControl shooting) {
-        if (shooting.equals(SnakeControl.SHOOTING)) {
-            setImage(Globals.getInstance().getImage("Shooting"));
-
-            setPosition(getPosition());
-        }
-    }
 
     public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
@@ -50,6 +44,7 @@ public class Snake extends GameEntity implements Animatable {
         updateSnakeBodyHistory();
         checkForGameOverConditions();
         body.doPendingModifications();
+        shootingInterval -= (shootingInterval > 0) ? 1 : 0;
     }
 
     public void stepSnake2() {
@@ -64,9 +59,15 @@ public class Snake extends GameEntity implements Animatable {
 
     private SnakeControl getUserInputSnake1() {
         SnakeControl turnDir = SnakeControl.INVALID;
+            if (InputHandler.getInstance().isKeyPressed(KeyCode.G)) {
+                if (shootingInterval == 0) {
+                    new Shooting(this);
+                    shootingInterval = 10;
+                }
+            }
 
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
 
         return turnDir;
     }
@@ -74,8 +75,8 @@ public class Snake extends GameEntity implements Animatable {
     private SnakeControl getUserInputSnake2() {
         SnakeControl turnDir = SnakeControl.INVALID;
 
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
 
         return turnDir;
     }
@@ -99,6 +100,7 @@ public class Snake extends GameEntity implements Animatable {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Game.spawnGameOver(1);
         }
     }
 
