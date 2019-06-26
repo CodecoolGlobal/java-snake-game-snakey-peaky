@@ -1,13 +1,10 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.Game;
-import com.codecool.snake.GameLoop;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
-import com.codecool.snake.entities.powerups.ShootingPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.sun.javafx.geom.Vec2d;
@@ -15,8 +12,9 @@ import javafx.geometry.Point2D;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
-    private static final float turnRate = 10;
+    private static final float turnRate = 6;
     private Snake snake;
+    private Shooting shooting;
 
     public SnakeHead(Snake snake, Vec2d position) {
         this.snake = snake;
@@ -43,27 +41,26 @@ public class SnakeHead extends GameEntity implements Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof Enemy){
+        if (entity instanceof Enemy) {
             System.out.println(getMessage());
             snake.changeHealth(((Enemy) entity).getDamage());
             System.out.println(snake.getHealth());
         }
 
-        if(entity instanceof SimplePowerUp){
+        if (entity instanceof SimplePowerUp) {
             System.out.println(getMessage());
             snake.addPart(4);
             SnakeBody.historySize = 1;
         }
-        
-        if(entity instanceof SpeedPowerUp){
+
+        if (entity instanceof SpeedPowerUp) {
             System.out.println(getMessage());
             snake.speedUp();
         }
-//        SnakeControl shooting = snake.getUserInput();
-//        if(entity instanceof ShootingPowerUp){
-//            System.out.println(getMessage());
-//            snake.shooting(shooting);
-//        }
+        /*if (entity instanceof ShootingPowerUp) {
+            System.out.println(getMessage());
+                new Shooting(snake);
+            }*/
 
         if (entity instanceof SnakeHead) {
             Globals.getInstance().stopGame();
