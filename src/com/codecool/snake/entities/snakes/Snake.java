@@ -1,19 +1,25 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.gameover.gameOver;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.glass.ui.CommonDialogs;
 import com.sun.javafx.geom.Vec2d;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Stop;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Optional;
 
 
 public class Snake implements Animatable {
@@ -66,9 +72,10 @@ public class Snake implements Animatable {
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
-
             Globals.getInstance().stopGame();
-            gameOverAlert();
+            gameOver go = new gameOver();
+            go.gameOver();
+            Game.spawnGameOver(1);
         }
     }
 
@@ -86,11 +93,5 @@ public class Snake implements Animatable {
         if(result != null) return result;
         return head;
     }
-    @FXML
-    private void gameOverAlert(){
-        Alert gameOver = new Alert(Alert.AlertType.INFORMATION);
-        gameOver.setContentText("Sliding over Sneaky Peaky!");
-        gameOver.setHeaderText(null);
-        gameOver.show();
-    }
+
 }
