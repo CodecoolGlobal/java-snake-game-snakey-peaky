@@ -38,7 +38,7 @@ public class Snake extends GameEntity implements Animatable {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
         this.name = name;
-        addPart(4);
+        addPart(20);
     }
 
     public void step() {
