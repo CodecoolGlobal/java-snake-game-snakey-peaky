@@ -4,14 +4,21 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
+import com.codecool.snake.entities.snakes.SnakeBody;
+import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.util.Duration;
 
 import java.util.List;
 
 public class GameLoop {
     private Snake snake;
+    private Snake snake2;
     private boolean running = false;
 
-    public GameLoop(Snake snake) { this.snake = snake; }
+    public GameLoop(Snake snake/*, Snake snake2*/) {
+        this.snake = snake;
+        //this.snake2 = snake2;
+    }
 
     public void start() {
         running = true;
@@ -23,7 +30,8 @@ public class GameLoop {
 
     public void step() {
         if(running) {
-            snake.step();
+            snake.stepSnake1();
+            //snake2.stepSnake2();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
@@ -31,9 +39,9 @@ public class GameLoop {
             }
             checkCollisions();
         }
-
         Globals.getInstance().display.frameFinished();
     }
+
 
     private void checkCollisions() {
         List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
