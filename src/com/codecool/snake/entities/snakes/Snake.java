@@ -13,14 +13,28 @@ import javafx.scene.input.KeyCode;
 import java.util.List;
 
 
-public class Snake implements Animatable {
-    private static final float speed = 2;
+public class Snake extends GameEntity implements Animatable {
+    private float speed = 2;
     private int health = 100;
+    private KeyCode turnLeftKey, turnRightKey, shootingKey;
     private String name;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
 
+
+    public void speedUp() {
+        speed++;
+    }
+
+
+    public void shooting(SnakeControl shooting) {
+        if (shooting.equals(SnakeControl.SHOOTING)) {
+            setImage(Globals.getInstance().getImage("Shooting"));
+
+            setPosition(getPosition());
+        }
+    }
 
     public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
@@ -28,7 +42,6 @@ public class Snake implements Animatable {
         this.name = name;
         addPart(4);
     }
-
 
     public void step() {
 
@@ -80,7 +93,7 @@ public class Snake implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health -= diff;
+        health += diff;
     }
 
     private void checkForGameOverConditions() {
@@ -92,7 +105,7 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -101,7 +114,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 
@@ -115,5 +128,13 @@ public class Snake implements Animatable {
 
     public String getName() {
         return name;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public SnakeHead getHead() {
+        return head;
     }
 }

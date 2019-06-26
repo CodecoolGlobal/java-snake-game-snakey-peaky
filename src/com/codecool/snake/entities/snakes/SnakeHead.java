@@ -7,8 +7,9 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.ShootingPowerUp;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
-
+import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
@@ -52,17 +53,27 @@ public class SnakeHead extends GameEntity implements Interactable {
             System.out.println(getMessage());
             snake.addPart(4);
         }
+        
+        if(entity instanceof SpeedPowerUp){
+            System.out.println(getMessage());
+            snake.speedUp();
+        }
+//        SnakeControl shooting = snake.getUserInput();
+//        if(entity instanceof ShootingPowerUp){
+//            System.out.println(getMessage());
+//            snake.shooting(shooting);
+//        }
 
         if (entity instanceof SnakeHead) {
             Globals.getInstance().stopGame();
             System.out.println("Game over");
         }
 
-        if(entity instanceof SnakeBody) {
+        /*if(entity instanceof SnakeBody) {
             if (!snake.getBody().getList().contains(entity)) {
                 Globals.getInstance().stopGame();
             }
-        }
+        }*/
     }
 
     public Snake getSnake() {
