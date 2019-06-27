@@ -16,12 +16,20 @@ public class SnakeBody extends GameEntity implements Interactable{
 
 
     public SnakeBody(Vec2d coord) {
-        setImage(Globals.getInstance().getImage("SnakeBody"));
         setX(coord.x);
         setY(coord.y);
 
         for (int i = 0; i < historySize; i++) {
             history.add(coord);
+        }
+    }
+
+    void setSnakeBodyImage(Snake snake) {
+        if (snake.getName().equals("Fire")) {
+            setImage(Globals.getInstance().getImage("SnakeBodyFire"));
+        }
+        else if (snake.getName().equals("Ice")) {
+            setImage(Globals.getInstance().getImage("SnakeBodyIce"));
         }
     }
 

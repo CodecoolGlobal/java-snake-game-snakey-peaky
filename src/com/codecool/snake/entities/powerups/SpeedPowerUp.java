@@ -12,10 +12,20 @@ public class SpeedPowerUp extends GameEntity implements Interactable {
     private static Random rnd = new Random();
 
     public SpeedPowerUp(){
+        double Ycoord;
+        double Xcoord;
         setImage(Globals.getInstance().getImage("SpeedUpPaprika"));
 
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        do {
+            Xcoord = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+        }
+        while (Xcoord > 1750);
+        do {
+            Ycoord = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+        }
+        while (Ycoord > 980);
+        setY(Ycoord);
+        setX(Xcoord);
     }
 
     @Override
