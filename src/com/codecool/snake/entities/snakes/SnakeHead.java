@@ -59,7 +59,10 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (entity instanceof Enemy) {
             System.out.println(getMessage());
             snake.changeHealth(((Enemy) entity).getDamage());
-            System.out.println(snake.getHealth());
+            snake.getHealthBar().changeHealthBar();
+            if (snake.getSpeed() > 1) {
+                snake.setSpeed(-1);
+            }
         }
 
         if (entity instanceof SimplePowerUp) {
@@ -82,7 +85,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             double entityYCoord = entity.getY();
             double snakeHeadX = snake.getHead().getX();
             double snakeHeadY = snake.getHead().getY();
-            if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 45) {
+            if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 40) {
                 Globals.getInstance().stopGame();
                 System.out.println("Game over");
                 Game.spawnGameOver(1);
@@ -95,12 +98,13 @@ public class SnakeHead extends GameEntity implements Interactable {
                 double entityYCoord = entity.getY();
                 double snakeHeadX = snake.getHead().getX();
                 double snakeHeadY = snake.getHead().getY();
-                if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 45) {
+                if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 40) {
                     Globals.getInstance().stopGame();
                     Game.spawnGameOver(1);
                 }
             }
         }
+
     }
 
     public Snake getSnake() {

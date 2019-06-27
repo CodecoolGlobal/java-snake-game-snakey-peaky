@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.powerups;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
@@ -22,6 +23,8 @@ public class ShootingPowerUp extends GameEntity implements Interactable {
         if (entity instanceof SnakeHead) {
             System.out.println(getMessage());
             destroy();
+            ((SnakeHead) entity).getSnake().setAvailableShotsLeft(5);
+            Game.spawnShootingPowerUps(1);
         }
     }
 

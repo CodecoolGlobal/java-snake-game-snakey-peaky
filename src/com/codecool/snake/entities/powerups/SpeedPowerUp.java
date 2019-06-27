@@ -14,7 +14,7 @@ public class SpeedPowerUp extends GameEntity implements Interactable {
     public SpeedPowerUp(){
         double Ycoord;
         double Xcoord;
-        setImage(Globals.getInstance().getImage("SpeedUpPaprika"));
+        setImage(Globals.getInstance().getImage("Khaleesi"));
 
         do {
             Xcoord = rnd.nextDouble() * Globals.WINDOW_WIDTH;
