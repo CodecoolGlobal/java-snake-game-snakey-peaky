@@ -47,8 +47,8 @@ public class Game extends Pane {
         setupInputHandling();
         Globals.getInstance().startGame();
         restartBtn = new Button("Restart");
-        restartBtn.setLayoutX(480);
-        restartBtn.setLayoutY(20);
+        restartBtn.setLayoutX(880);
+        restartBtn.setLayoutY(960);
         restartBtn.setStyle("-fx-font-size: 18;");
         getChildren().add(restartBtn);
         restartBtn.setOnAction(event -> {
@@ -60,8 +60,8 @@ public class Game extends Pane {
     }
 
     private void spawnSnake() {
-        snake = new Snake(new Vec2d(500, 500), "Milán");
-        //snake2 = new Snake(new Vec2d(200, 500), "Vitya");
+        snake = new Snake(new Vec2d(500, 500), "Fire");
+        //snake2 = new Snake(new Vec2d(200, 500), "Ice");
     }
 
     public static void spawnEnemies(int numberOfEnemies) {

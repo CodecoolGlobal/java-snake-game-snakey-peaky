@@ -27,13 +27,15 @@ public class Globals {
 
     public void setupResources() {
         resources = new Resources();
-        resources.addImage("SnakeHead", new Image("snake_head.png"));
-        resources.addImage("SnakeBody", new Image("snake_body.png"));
-        resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
-        resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
-        resources.addImage("SpeedUpPaprika", new Image("paprika-12-570342.png"));
+        resources.addImage("SnakeHeadFire", new Image("snake_head_fire.png"));
+        resources.addImage("SnakeHeadIce", new Image("snake_head_ice.png"));
+        resources.addImage("SnakeBodyFire", new Image("snake_body_fire.png"));
+        resources.addImage("SnakeBodyIce", new Image("snake_body_ice.png"));
+        resources.addImage("SimpleEnemy", new Image("cersei.png"));
+        resources.addImage("PowerUpBerry", new Image("dragon_fruit.png"));
+        resources.addImage("SpeedUpPaprika", new Image("khaleesi.png"));
         resources.addImage("ShootingPowerUp", new Image("dragon-png-4.png"));
-        resources.addImage("Shooting", new Image("27661-1-fireball-transparent-background-thumb.png"));
+        resources.addImage("Shooting", new Image("fireball.png"));
         resources.addImage("gameOverScene", new Image("GO.png"));
         resources.addImage("BG", new Image("background.png"));
     }

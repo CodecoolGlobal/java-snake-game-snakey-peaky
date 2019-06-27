@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake extends GameEntity implements Animatable {
-    private float speed = 2;
+    private float speed = 3;
     private int health = 100;
     private KeyCode turnLeftKey, turnRightKey, shootingKey;
     private int shootingInterval;
@@ -22,14 +22,16 @@ public class Snake extends GameEntity implements Animatable {
 
 
     public void speedUp() {
-        speed++;
+        speed = (float) (speed + 0.5);
     }
 
     public Snake(Vec2d position, String name) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
         this.name = name;
+        head.setSnakeHeadImage(this);
         addPart(20);
+        head.updateStartingPosition(head.getPosition().x - 50);
     }
 
     public void step() {
@@ -58,7 +60,7 @@ public class Snake extends GameEntity implements Animatable {
             if (InputHandler.getInstance().isKeyPressed(KeyCode.G)) {
                 if (shootingInterval == 0) {
                     new Shooting(this);
-                    shootingInterval = 10;
+                    shootingInterval = 50;
                 }
             }
 
@@ -83,6 +85,7 @@ public class Snake extends GameEntity implements Animatable {
 
         for (int i = 0; i < numParts; i++) {
             SnakeBody newBodyPart = new SnakeBody(position);
+            newBodyPart.setSnakeBodyImage(this);
             body.add(newBodyPart);
         }
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);

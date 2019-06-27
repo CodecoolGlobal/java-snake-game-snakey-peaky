@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.Globals;
+import com.codecool.snake.Game;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
@@ -18,8 +19,21 @@ public class SnakeHead extends GameEntity implements Interactable {
 
     public SnakeHead(Snake snake, Vec2d position) {
         this.snake = snake;
-        setImage(Globals.getInstance().getImage("SnakeHead"));
         setPosition(position);
+
+    }
+
+    void updateStartingPosition(double Xpos) {
+        this.setX(Xpos);
+    }
+
+    void setSnakeHeadImage(Snake snake) {
+        if (snake.getName().equals("Fire")) {
+            setImage(Globals.getInstance().getImage("SnakeHeadFire"));
+        }
+        else if(snake.getName().equals("Ice")) {
+            setImage(Globals.getInstance().getImage("SnakeHeadIce"));
+        }
     }
 
     public void updateRotation(SnakeControl turnDirection, float speed) {
@@ -38,6 +52,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
+
 
     @Override
     public void apply(GameEntity entity) {
@@ -67,7 +82,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             System.out.println("Game over");
         }
 
-/*        if(entity instanceof SnakeBody) {
+        /*if(entity instanceof SnakeBody) {
             if (!snake.getBody().getList().contains(entity)) {
                 Globals.getInstance().stopGame();
                 Game.spawnGameOver(1);
