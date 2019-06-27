@@ -78,16 +78,29 @@ public class SnakeHead extends GameEntity implements Interactable {
             }*/
 
         if (entity instanceof SnakeHead) {
-            Globals.getInstance().stopGame();
-            System.out.println("Game over");
-        }
-
-        /*if(entity instanceof SnakeBody) {
-            if (!snake.getBody().getList().contains(entity)) {
+            double entityXCoord = entity.getX();
+            double entityYCoord = entity.getY();
+            double snakeHeadX = snake.getHead().getX();
+            double snakeHeadY = snake.getHead().getY();
+            if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 45) {
                 Globals.getInstance().stopGame();
+                System.out.println("Game over");
                 Game.spawnGameOver(1);
             }
-        }*/
+        }
+
+        if(entity instanceof SnakeBody) {
+            if (!snake.getBody().getList().contains(entity)) {
+                double entityXCoord = entity.getX();
+                double entityYCoord = entity.getY();
+                double snakeHeadX = snake.getHead().getX();
+                double snakeHeadY = snake.getHead().getY();
+                if (Math.hypot(Math.abs(snakeHeadX - entityXCoord), Math.abs(snakeHeadY - entityYCoord)) < 45) {
+                    Globals.getInstance().stopGame();
+                    Game.spawnGameOver(1);
+                }
+            }
+        }
     }
 
     public Snake getSnake() {

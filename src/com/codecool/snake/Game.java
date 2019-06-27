@@ -5,6 +5,7 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.ShootingPowerUp;
 import com.codecool.snake.entities.powerups.SpeedPowerUp;
 import com.codecool.snake.resources.Styling;
+import com.codecool.snake.Healthbar;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -37,7 +38,7 @@ public class Game extends Pane {
         shootingPowerUps(3);
         
 
-        GameLoop gameLoop = new GameLoop(snake/*, snake2*/);
+        GameLoop gameLoop = new GameLoop(snake, snake2);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -54,14 +55,15 @@ public class Game extends Pane {
         restartBtn.setOnAction(event -> {
             Globals.getInstance().stopGame();
             Globals.getInstance().display.clear();
+            Healthbar.snakeCounter = 0;
             init();
             start();
         });
     }
 
     private void spawnSnake() {
-        snake = new Snake(new Vec2d(500, 500), "Fire");
-        //snake2 = new Snake(new Vec2d(200, 500), "Ice");
+        snake = new Snake(new Vec2d(1500, 500), "Fire");
+        snake2 = new Snake(new Vec2d(200, 500), "Ice");
     }
 
     public static void spawnEnemies(int numberOfEnemies) {
@@ -85,6 +87,8 @@ public class Game extends Pane {
 
     private void setBackground() {
         Styling bg = new Styling();
+
+
     }
 
     private void setupInputHandling() {

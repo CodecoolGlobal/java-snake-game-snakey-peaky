@@ -35,9 +35,11 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("dragon_fruit.png"));
         resources.addImage("SpeedUpPaprika", new Image("khaleesi.png"));
         resources.addImage("ShootingPowerUp", new Image("dragon-png-4.png"));
-        resources.addImage("Shooting", new Image("fireball.png"));
+        resources.addImage("Fireball", new Image("fireball.png"));
+        resources.addImage("Iceball", new Image("iceball.png"));
         resources.addImage("gameOverScene", new Image("GO.png"));
         resources.addImage("BG", new Image("background.png"));
+        resources.addImage("FullHealth", new Image("healthfull.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
