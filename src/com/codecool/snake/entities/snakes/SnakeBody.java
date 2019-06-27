@@ -14,8 +14,8 @@ public class SnakeBody extends GameEntity implements Interactable{
     public static int historySize = 1;
     private Snake snake;
 
-
-    public SnakeBody(Vec2d coord) {
+    public SnakeBody(Vec2d coord, Snake snake) {
+        this.snake = snake;
         setX(coord.x);
         setY(coord.y);
 
@@ -43,14 +43,7 @@ public class SnakeBody extends GameEntity implements Interactable{
 
     @Override
     public void apply(GameEntity entity) {
-        try {
-            if (entity instanceof SnakeHead) {
-                if (!((SnakeHead) entity).getSnake().getName().equals(snake.getName())) {
-                    System.out.println("Game over");
-                }
-            }
-        }
-        catch (NullPointerException ex) {}
+
     }
 
     @Override
