@@ -43,14 +43,14 @@ public class SnakeBody extends GameEntity implements Interactable{
 
     @Override
     public void apply(GameEntity entity) {
-        /*try {
+        try {
             if (entity instanceof SnakeHead) {
                 if (!((SnakeHead) entity).getSnake().getName().equals(snake.getName())) {
                     System.out.println("Game over");
                 }
             }
         }
-        catch (NullPointerException ex) {}*/
+        catch (NullPointerException ex) {}
     }
 
     @Override
